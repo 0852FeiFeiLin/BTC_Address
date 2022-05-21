@@ -49,6 +49,8 @@ func CreateAddress(){
 	fmt.Printf("公钥：%x\n",pubBytes)
 	fmt.Println(len(pubBytes))
 
+
+
 	//对非压缩公钥进行双重hash计算
 	pubHash := server.PubHash(pubBytes)//返回的为神么是20字节，因为ripemd160 hash计算之后就是返回20字节，160位
 	fmt.Println("原始公钥哈希数据：",pubHash)
@@ -60,7 +62,7 @@ func CreateAddress(){
 	fmt.Println("版本号+原始公钥哈希：",ver_pubHash)
 	fmt.Println(len(ver_pubHash))
 
-	//ver_pubHash进行双重hash，然后去hash的前四位，然后得到检验位
+	//ver_pubHash进行双重hash，然后取hash的前四位，然后得到检验位
 	checkCode := server.CheckCode(ver_pubHash)
 	fmt.Println("检验位：",checkCode)
 
@@ -87,3 +89,4 @@ func CreateAddress(){
 	}
 	fmt.Println("有效!\n最终btc地址：",btcAddress)
 }
+
